@@ -16,7 +16,6 @@ core
 crash_context_v1
 .deps/
 .DS_Store
-.env
 /.gn
 /.gnfiles
 include/
