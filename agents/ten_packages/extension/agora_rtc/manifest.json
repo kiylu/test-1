@@ -1,0 +1,604 @@
+{
+  "type": "extension",
+  "name": "agora_rtc",
+  "version": "0.9.0-rc1",
+  "package": {
+    "include": [
+      "manifest.json",
+      "property.json",
+      "lib/**"
+    ]
+  },
+  "supports": [
+    {
+      "os": "linux",
+      "arch": "x64"
+    }
+  ],
+  "dependencies": [
+    {
+      "type": "system",
+      "name": "ten_runtime",
+      "version": "0.4"
+    },
+    {
+      "type": "system",
+      "name": "agora_rtc_sdk",
+      "version": "=4.1.39+build397657"
+    },
+    {
+      "type": "system",
+      "name": "nlohmann_json",
+      "version": "=3.11.2"
+    }
+  ],
+  "api": {
+    "property": {
+      "app_id": {
+        "type": "string"
+      },
+      "token": {
+        "type": "string"
+      },
+      "channel": {
+        "type": "string"
+      },
+      "stream_id": {
+        "type": "uint32"
+      },
+      "remote_stream_id": {
+        "type": "uint32"
+      },
+      "subscribe_audio": {
+        "type": "bool"
+      },
+      "subscribe_audio_sample_rate": {
+        "type": "int32"
+      },
+      "subscribe_audio_num_of_channels": {
+        "type": "int32"
+      },
+      "subscribe_audio_samples_per_frame": {
+        "type": "int32"
+      },
+      "subscribe_audio_frame_source": {
+        "type": "string"
+      },
+      "publish_audio": {
+        "type": "bool"
+      },
+      "publish_audio_auto_publishing": {
+        "type": "bool"
+      },
+      "audio_scenario": {
+        "type": "int32"
+      },
+      "subscribe_video": {
+        "type": "bool"
+      },
+      "subscribe_video_pix_fmt": {
+        "type": "int32"
+      },
+      "subscribe_video_encoded": {
+        "type": "bool"
+      },
+      "publish_video": {
+        "type": "bool"
+      },
+      "publish_video_width": {
+        "type": "int32"
+      },
+      "publish_video_height": {
+        "type": "int32"
+      },
+      "publish_video_frame_rate": {
+        "type": "int32"
+      },
+      "publish_video_encoded": {
+        "type": "bool"
+      },
+      "publish_video_auto_publishing": {
+        "type": "bool"
+      },
+      "publish_data": {
+        "type": "bool"
+      },
+      "area_code": {
+        "type": "int32"
+      },
+      "enable_agora_asr": {
+        "type": "bool"
+      },
+      "agora_asr_vendor_name": {
+        "type": "string"
+      },
+      "agora_asr_language": {
+        "type": "string"
+      },
+      "agora_asr_vendor_key": {
+        "type": "string"
+      },
+      "agora_asr_vendor_secret": {
+        "type": "string"
+      },
+      "agora_asr_vendor_app_id": {
+        "type": "string"
+      },
+      "agora_asr_vendor_region": {
+        "type": "string"
+      },
+      "agora_asr_session_control_file_path": {
+        "type": "string"
+      },
+      "encryption_key": {
+        "type": "string"
+      },
+      "encryption_salt": {
+        "type": "string"
+      },
+      "encryption_mode": {
+        "type": "int32"
+      },
+      "sdk_log_file_path": {
+        "type": "string"
+      },
+      "auto_join": {
+        "type": "bool"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "remote_user_id": {
+        "type": "string"
+      },
+      "enable_string_uid": {
+        "type": "bool"
+      },
+      "sdk_params": {
+        "type": "string"
+      },
+      "sid": {
+        "type": "string"
+      }
+    },
+    "cmd_in": [
+      {
+        "name": "flush"
+      },
+      {
+        "name": "join"
+      },
+      {
+        "name": "leave"
+      },
+      {
+        "name": "publish",
+        "property": {
+          "video": {
+            "type": "bool"
+          },
+          "audio": {
+            "type": "bool"
+          }
+        }
+      },
+      {
+        "name": "unpublish",
+        "property": {
+          "video": {
+            "type": "bool"
+          },
+          "audio": {
+            "type": "bool"
+          }
+        }
+      }
+    ],
+    "cmd_out": [
+      {
+        "name": "on_user_joined",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "remote_user_id": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "on_user_left",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "remote_user_id": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "on_user_info_updated",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          },
+          "user_media_info": {
+            "type": "int32"
+          },
+          "value": {
+            "type": "bool"
+          }
+        }
+      },
+      {
+        "name": "on_user_video_track_state_changed",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "int32"
+          },
+          "reason": {
+            "type": "int32"
+          }
+        }
+      },
+      {
+        "name": "on_user_audio_track_state_changed",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "int32"
+          },
+          "reason": {
+            "type": "int32"
+          }
+        }
+      },
+      {
+        "name": "on_user_track_state_subscribed",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          },
+          "video": {
+            "type": "bool"
+          },
+          "audio": {
+            "type": "bool"
+          }
+        }
+      },
+      {
+        "name": "on_user_track_state_unsubscribed",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          },
+          "video": {
+            "type": "bool"
+          },
+          "audio": {
+            "type": "bool"
+          }
+        }
+      },
+      {
+        "name": "on_remote_audio_track_statistics",
+        "property": {
+          "stream_id": {
+            "type": "uint32"
+          },
+          "network_transport_delay": {
+            "type": "int32"
+          },
+          "jitter_buffer_delay": {
+            "type": "uint32"
+          },
+          "e2e_delay_ms": {
+            "type": "int32"
+          }
+        }
+      },
+      {
+        "name": "on_connected",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "reason_type": {
+            "type": "int32"
+          }
+        }
+      },
+      {
+        "name": "on_disconnected",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "reason_type": {
+            "type": "int32"
+          }
+        }
+      },
+      {
+        "name": "on_connection_lost",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "on_connection_failure",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "reason_type": {
+            "type": "int32"
+          }
+        }
+      },
+      {
+        "name": "on_connection_error",
+        "property": {
+          "error": {
+            "type": "int32"
+          },
+          "msg": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "on_token_expired",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "on_token_will_expire",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "on_first_remote_video_frame",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          },
+          "width": {
+            "type": "int32"
+          },
+          "height": {
+            "type": "int32"
+          },
+          "elapsed": {
+            "type": "int32"
+          }
+        }
+      },
+      {
+        "name": "on_first_remote_video_decoded",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          },
+          "width": {
+            "type": "int32"
+          },
+          "height": {
+            "type": "int32"
+          },
+          "elapsed": {
+            "type": "int32"
+          }
+        }
+      },
+      {
+        "name": "on_first_remote_audio_frame",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          },
+          "elapsed": {
+            "type": "int32"
+          }
+        }
+      },
+      {
+        "name": "on_first_remote_audio_decoded",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          },
+          "elapsed": {
+            "type": "int32"
+          }
+        }
+      }
+    ],
+    "data_in": [
+      {
+        "name": "data"
+      }
+    ],
+    "data_out": [
+      {
+        "name": "data",
+        "property": {
+          "remote_user_id": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "text_data",
+        "property": {
+          "time": {
+            "type": "int64"
+          },
+          "duration_ms": {
+            "type": "int64"
+          },
+          "language": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "is_final": {
+            "type": "bool"
+          },
+          "stream_id": {
+            "type": "uint32"
+          },
+          "end_of_segment": {
+            "type": "bool"
+          },
+          "remote_user_id": {
+            "type": "string"
+          }
+        }
+      }
+    ],
+    "audio_frame_in": [
+      {
+        "name": "pcm_frame"
+      }
+    ],
+    "audio_frame_out": [
+      {
+        "name": "pcm_frame",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "stream_id": {
+            "type": "uint32"
+          },
+          "source": {
+            "type": "string"
+          },
+          "remote_user_id": {
+            "type": "string"
+          }
+        }
+      }
+    ],
+    "video_frame_in": [
+      {
+        "name": "video_frame"
+      },
+      {
+        "name": "encoded_video_frame",
+        "property": {
+          "dts": {
+            "type": "int64"
+          },
+          "codec_type": {
+            "type": "int32"
+          },
+          "frame_type": {
+            "type": "int32"
+          },
+          "stream_type": {
+            "type": "int32"
+          },
+          "frame_rate": {
+            "type": "int32"
+          },
+          "rotation": {
+            "type": "int32"
+          }
+        },
+        "required": [
+          "dts",
+          "codec_type"
+        ]
+      }
+    ],
+    "video_frame_out": [
+      {
+        "name": "video_frame",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "stream_id": {
+            "type": "uint32"
+          }
+        },
+        "required": [
+          "stream_id"
+        ]
+      },
+      {
+        "name": "encoded_video_frame",
+        "property": {
+          "stream_id": {
+            "type": "uint32"
+          },
+          "dts": {
+            "type": "int64"
+          },
+          "codec_type": {
+            "type": "int32"
+          },
+          "frame_type": {
+            "type": "int32"
+          },
+          "stream_type": {
+            "type": "int32"
+          },
+          "frame_rate": {
+            "type": "int32"
+          },
+          "rotation": {
+            "type": "int32"
+          }
+        },
+        "required": [
+          "stream_id",
+          "dts",
+          "codec_type"
+        ]
+      }
+    ]
+  }
+}

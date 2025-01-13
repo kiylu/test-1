@@ -1,0 +1,81 @@
+{
+  "type": "extension",
+  "name": "agora_sess_ctrl",
+  "version": "0.3.6",
+  "package": {
+    "include": [
+      "manifest.json",
+      "property.json",
+      "lib/**"
+    ]
+  },
+  "supports": [
+    {
+      "os": "linux",
+      "arch": "x64"
+    }
+  ],
+  "dependencies": [
+    {
+      "type": "system",
+      "name": "ten_runtime",
+      "version": "0.4"
+    }
+  ],
+  "api": {
+    "property": {
+      "wait_for_eos": {
+        "type": "bool"
+      },
+      "discard_silence_sentence": {
+        "type": "bool"
+      },
+      "dump": {
+        "type": "bool"
+      },
+      "dump_path": {
+        "type": "string"
+      }
+    },
+    "cmd_out": [
+      {
+        "name": "start_of_sentence"
+      },
+      {
+        "name": "end_of_sentence"
+      }
+    ],
+    "audio_frame_in": [
+      {
+        "name": "pcm_frame",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "stream_id": {
+            "type": "uint32"
+          },
+          "remote_user_id": {
+            "type": "string"
+          }
+        }
+      }
+    ],
+    "audio_frame_out": [
+      {
+        "name": "pcm_frame",
+        "property": {
+          "channel": {
+            "type": "string"
+          },
+          "stream_id": {
+            "type": "uint32"
+          },
+          "remote_user_id": {
+            "type": "string"
+          }
+        }
+      }
+    ]
+  }
+}

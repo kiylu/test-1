@@ -1,0 +1,335 @@
+{
+  "type": "extension",
+  "name": "agora_rtm",
+  "version": "0.3.0",
+  "package": {
+    "include": [
+      "manifest.json",
+      "property.json",
+      "lib/**"
+    ]
+  },
+  "dependencies": [
+    {
+      "type": "system",
+      "name": "ten_runtime",
+      "version": "0.4"
+    },
+    {
+      "type": "system",
+      "name": "nlohmann_json",
+      "version": "3.11.2"
+    }
+  ],
+  "api": {
+    "property": {
+      "app_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "channel": {
+        "type": "string"
+      },
+      "token": {
+        "type": "string"
+      },
+      "sdk_log_file_path": {
+        "type": "string"
+      },
+      "rtm_enabled": {
+        "type": "bool"
+      },
+      "rtm_is_stream": {
+        "type": "bool"
+      },
+      "rtm_presence_enabled": {
+        "type": "bool"
+      },
+      "rtm_metadata_enabled": {
+        "type": "bool"
+      },
+      "rtm_lock_enabled": {
+        "type": "bool"
+      }
+    },
+    "cmd_in": [
+      {
+        "name": "subscribe",
+        "property": {
+          "channelName": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "unsubscribe",
+        "property": {
+          "channelName": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "publish",
+        "property": {
+          "channelType": {
+            "type": "string"
+          },
+          "channelName": {
+            "type": "string"
+          },
+          "messageType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "buf"
+          }
+        }
+      },
+      {
+        "name": "set_presence_state",
+        "property": {
+          "channelName": {
+            "type": "string"
+          },
+          "channelType": {
+            "type": "string"
+          },
+          "states": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "remove_presence_state",
+        "property": {
+          "channelName": {
+            "type": "string"
+          },
+          "channelType": {
+            "type": "string"
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "set_user_metadata",
+        "property": {
+          "userId": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "update_user_metadata",
+        "property": {
+          "userId": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "remove_user_metadata",
+        "property": {
+          "userId": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "renew_token",
+        "property": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "set_lock",
+        "property": {
+          "channelName": {
+            "type": "string"
+          },
+          "channelType": {
+            "type": "string"
+          },
+          "lockName": {
+            "type": "string"
+          },
+          "lockTTL": {
+            "type": "uint32"
+          }
+        }
+      },
+      {
+        "name": "acquire_lock",
+        "property": {
+          "channelName": {
+            "type": "string"
+          },
+          "channelType": {
+            "type": "string"
+          },
+          "lockName": {
+            "type": "string"
+          },
+          "lockTTL": {
+            "type": "uint32"
+          }
+        }
+      },
+      {
+        "name": "release_lock",
+        "property": {
+          "channelName": {
+            "type": "string"
+          },
+          "channelType": {
+            "type": "string"
+          },
+          "lockName": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "remove_lock",
+        "property": {
+          "channelName": {
+            "type": "string"
+          },
+          "channelType": {
+            "type": "string"
+          },
+          "lockName": {
+            "type": "string"
+          }
+        }
+      }
+    ],
+    "cmd_out": [],
+    "data_in": [
+      {
+        "name": "data"
+      }
+    ],
+    "data_out": [
+      {
+        "name": "rtm_message_event",
+        "property": {
+          "channelName": {
+            "type": "string"
+          },
+          "channelTopic": {
+            "type": "string"
+          },
+          "customType": {
+            "type": "string"
+          },
+          "messageType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "uint64"
+          }
+        }
+      },
+      {
+        "name": "rtm_storage_event",
+        "property": {
+          "eventType": {
+            "type": "int32"
+          },
+          "channelName": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "uint64"
+          }
+        }
+      },
+      {
+        "name": "rtm_presence_event",
+        "property": {
+          "type": {
+            "type": "int32"
+          },
+          "interval": {
+            "type": "string"
+          },
+          "channelName": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "snapshot": {
+            "type": "string"
+          },
+          "stateItems": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "rtm_lock_event",
+        "property": {
+          "eventType": {
+            "type": "int32"
+          },
+          "channelName": {
+            "type": "string"
+          },
+          "count": {
+            "type": "int32"
+          },
+          "lockDetailList": {
+            "type": "string"
+          }
+        }
+      },
+      {
+        "name": "rtm_token_will_expire",
+        "property": {
+          "channelName": {
+            "type": "string"
+          }
+        }
+      }
+    ]
+  }
+}

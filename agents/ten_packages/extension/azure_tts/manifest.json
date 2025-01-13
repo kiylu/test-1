@@ -1,0 +1,72 @@
+{
+  "type": "extension",
+  "name": "azure_tts",
+  "version": "0.6.2",
+  "dependencies": [
+    {
+      "type": "system",
+      "name": "ten_runtime",
+      "version": "0.4"
+    },
+    {
+      "type": "system",
+      "name": "azure_speech_sdk",
+      "version": "1.38.0"
+    },
+    {
+      "type": "system",
+      "name": "nlohmann_json",
+      "version": "=3.11.2"
+    }
+  ],
+  "api": {
+    "property": {
+      "azure_subscription_key": {
+        "type": "string"
+      },
+      "azure_subscription_region": {
+        "type": "string"
+      },
+      "azure_synthesis_voice_name": {
+        "type": "string"
+      },
+      "style": {
+        "type": "string"
+      },
+      "prosody": {
+        "type": "string"
+      },
+      "language": {
+        "type": "string"
+      },
+      "role": {
+        "type": "string"
+      }
+    },
+    "data_in": [
+      {
+        "name": "text_data",
+        "property": {
+          "text": {
+            "type": "string"
+          }
+        }
+      }
+    ],
+    "cmd_in": [
+      {
+        "name": "flush"
+      }
+    ],
+    "cmd_out": [
+      {
+        "name": "flush"
+      }
+    ],
+    "audio_frame_out": [
+      {
+        "name": "pcm_frame"
+      }
+    ]
+  }
+}

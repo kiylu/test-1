@@ -1,0 +1,11 @@
+{
+    "subscribe_audio_sample_rate": 16000,
+    "subscribe_audio_num_of_channels": 1,
+    "subscribe_audio_frame_source": "on_playback_before_mixing",
+    "stream_id": 0,
+    "remote_stream_id": 0,
+    "encryption_key": "",
+    "encryption_salt": "",
+    "encryption_mode": 0,
+    "area_code": -1
+}
